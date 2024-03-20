@@ -31,6 +31,21 @@ void XYStateEstimator::updateState(imu_state_t * imu_state_p, gps_state_t * gps_
 
     ///////////////////////////////////////////////////////////////////
     // INSERT YAW, X and Y CALCULATION HERE
+    // constants and equations
+    const float R_earth = 6371000;
+    const float origin_lat = 34.106465;
+    const float origin_lon = -117.712488;
+    latitudeChange = gps_state_p->lat - origin_lat;
+    longitudeChange = gps_state_p->lon - origin_lon;
+
+    // X and Y states in radians
+    state.y = R_earth*latitudeChange*PI/180;
+    state.x = R_earth*longitudeChange*cos(origin_lat)*PI/180;
+
+    // yaw in radians
+    headingrad = imu_state_p->heading * PI/180;
+    yawrad = -headingrad + PI/2;
+    state.yaw = angleDiff(yawrad);
     //////////////////////////////////////////////////////////////////
 
   }
