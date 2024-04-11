@@ -71,10 +71,10 @@ void setup() {
   motor_driver.init();
   led.init();
 
-  int navigateDelay = 0; // how long robot will stay at surface waypoint before continuing (ms)
+  int navigateDelay = 50000; // how long robot will stay at surface waypoint before continuing (ms)
 
-  const int num_surface_waypoints = 3; // Set to 0 if only doing depth control
-  double surface_waypoints [] = { 125, -40, 150, -40, 125, -40 };   // listed as x0,y0,x1,y1, ... etc.
+  const int num_surface_waypoints = 4; // Set to 0 if only doing depth control
+  double surface_waypoints [] = { 3, -10, -3, 10, 125, -40 };   // listed as x0,y0,x1,y1, ... etc.
   surface_control.init(num_surface_waypoints, surface_waypoints, navigateDelay);
   
   xy_state_estimator.init(); 
