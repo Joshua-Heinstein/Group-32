@@ -27,6 +27,7 @@ Authors:
 #include <SurfaceControl.h>
 #define UartSerial Serial1
 #include <GPSLockLED.h>
+#include <BurstADCSampler.h> //Included the burst sampling file
 
 /////////////////////////* Global Variables *////////////////////////
 
@@ -42,6 +43,7 @@ SensorIMU imu;
 Logger logger;
 Printer printer;
 GPSLockLED led;
+BurstADCSampler burst_adc; //burst global variable
 
 // loop start recorder
 int loopStartTime;
@@ -74,6 +76,7 @@ void setup() {
   int navigateDelay = 50000; // how long robot will stay at surface waypoint before continuing (ms)
 
   const int num_surface_waypoints = 4; // Set to 0 if only doing depth control
+  //Make sure to change the Orgin when we get to dana point
   double surface_waypoints [] = { 3, -10, -3, 10, 125, -40 };   // listed as x0,y0,x1,y1, ... etc.
   surface_control.init(num_surface_waypoints, surface_waypoints, navigateDelay);
   
@@ -149,6 +152,14 @@ void loop() {
     EF_States[0] = 1;
     EF_States[1] = 1;
     EF_States[2] = 1;
+  }
+
+  //Checks to see if the robot is at the waypoint and if it has not yet taken a sample
+  if(surface_control.atPoint && !isSampled()){
+  //if (currentTime - burst_adc.lastExecutionTime > (2*60*1000)) { //checks to see if 2 minutes have passed, then runs the burst sampling
+    drive(0,0,0);
+    burst_adc.updateSample(); // calls the burst sample script
+    delay(2000); //delay in miliseconds 
   }
 
   // uses the ButtonSampler library to read a button -- use this as a template for new libraries!

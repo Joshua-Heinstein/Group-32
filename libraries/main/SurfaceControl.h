@@ -63,6 +63,17 @@ private:
   int delayStartTime = 0;
   int currentTime;
   bool delayed;
+
+  private bool isSampledPoint;
+  //isSampled is a boolean variable which is type constant, which checks if a way point (cordinate) is sampled
+  bool isSampled() const{
+    return isSampledPoint;
+    }
+
+  //takes in a point (isSampled) and sets it as the most recent sampled
+  void setSampled(bool sampled) {
+    isSampledPoint = sampled;
+  } 
 };
 
 #endif
