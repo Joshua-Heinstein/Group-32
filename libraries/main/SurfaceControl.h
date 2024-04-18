@@ -47,6 +47,7 @@ public:
 
   int totalWayPoints;
   double * wayPoints;
+  bool isSampled;
 
 private:
 
@@ -64,7 +65,7 @@ private:
   int currentTime;
   bool delayed;
 
-  bool isSampled;
+
 
   private bool isSampledPoint;
   //isSampled is a boolean variable which is type constant, which checks if a way point (cordinate) is sampled

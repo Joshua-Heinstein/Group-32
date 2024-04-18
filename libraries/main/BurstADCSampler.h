@@ -25,6 +25,7 @@ public:
 	void sample(void);
 	void print(void);
 	void init(void);
+	void update(void);
 
 	int lastExecutionTime = -1;
 
@@ -32,7 +33,6 @@ private:
 	node* headarray[NUM_PINS] = {NULL};
 
 	//helper func
-	void update(void);
 	void timestamp(void);
 	void save(void);
 	void cleanup(void);

@@ -28,7 +28,7 @@ Authors:
 #define UartSerial Serial1
 #include <GPSLockLED.h>
 #include <BurstADCSampler.h> //Included the burst sampling file
-#include <isSampled>
+
 
 /////////////////////////* Global Variables *////////////////////////
 
@@ -156,10 +156,10 @@ void loop() {
   }
 
   //Checks to see if the robot is at the waypoint and if it has not yet taken a sample
-  if(surface_control.atPoint && !isSampled()){
+  if(surface_control.atPoint && !surface_control.isSampled){
   //if (currentTime - burst_adc.lastExecutionTime > (2*60*1000)) { //checks to see if 2 minutes have passed, then runs the burst sampling
-    drive(0,0,0);
-    burst_adc.updateSample(); // calls the burst sample script
+    motor_driver.drive(0,0,0);
+    burst_adc.update(); // calls the burst sample script
     delay(2000); //delay in miliseconds 
   }
 
