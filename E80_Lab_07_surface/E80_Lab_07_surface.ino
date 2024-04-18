@@ -28,6 +28,7 @@ Authors:
 #define UartSerial Serial1
 #include <GPSLockLED.h>
 #include <BurstADCSampler.h> //Included the burst sampling file
+#include <isSampled>
 
 /////////////////////////* Global Variables *////////////////////////
 
