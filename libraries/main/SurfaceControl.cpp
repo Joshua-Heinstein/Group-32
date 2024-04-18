@@ -74,8 +74,7 @@ void SurfaceControl::navigate(xy_state_t * state, gps_state_t * gps_state_p, int
       uL = 127;
     }
 
-
-    //
+    ////
     ///////////////////////////////////////////////////////////
     
   }
