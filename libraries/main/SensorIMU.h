@@ -63,9 +63,9 @@ private:
   float mag_offsets[3]        = { 1.00, 1.00, 1.00 };
   
   // Soft iron error compensation matrix
-  float mag_ironcomp[3][3] =  { {  1.00,     0.00,     0.00   },
-                                {  0.00,     1.00,     0.00   },
-                                {  0.00,     0.00,     1.00   } };
+  float mag_ironcomp[3][3] =  { {  0.031,    0.00,     -0.0011   },
+                                {  0.00,     0.0306,   -0.0018   },
+                                {  0.00,     0.00,      0.0324   } };
   
 
 };

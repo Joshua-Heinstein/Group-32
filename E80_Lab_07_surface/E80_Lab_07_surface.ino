@@ -77,9 +77,9 @@ void setup() {
 
   int navigateDelay = 50000; // how long robot will stay at surface waypoint before continuing (ms)
 
-  const int num_surface_waypoints = 4; // Set to 0 if only doing depth control
+  const int num_surface_waypoints = 2; // Set to 0 if only doing depth control
   //Make sure to change the Orgin when we get to dana point
-  double surface_waypoints [] = { 3, -10, -3, 10, 125, -40 };   // listed as x0,y0,x1,y1, ... etc.
+  double surface_waypoints [] = { 0, 0, 0, 0};   // listed as x0,y0,x1,y1, ... etc.
   surface_control.init(num_surface_waypoints, surface_waypoints, navigateDelay);
   
   xy_state_estimator.init(); 
@@ -157,8 +157,8 @@ void loop() {
   }
 
   //Checks to see if the robot is at the waypoint and if it has not yet taken a sample
-  //if(surface_control.atPoint && !surface_control.isSampled){
-  if (currentTime - burst_adc.lastExecutionTime > (2*60*1000)) { //checks to see if 2 minutes have passed, then runs the burst sampling
+  if(surface_control.atPoint && !surface_control.isSampled()){
+  //if (currentTime - burst_adc.lastExecutionTime > (2*60*1000)) { //checks to see if 2 minutes have passed, then runs the burst sampling
     motor_driver.drive(0,0,0);
     burst_adc.sample(); // calls the burst sample script
     surface_control.setSampled(true);
